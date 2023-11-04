@@ -1,6 +1,6 @@
 import { List } from 'components/List.styles';
 import FriendCard from './FriendCard';
-import getRandomHexColor from 'helper/getRandomHexColor';
+import { getRandomHexColor } from 'helper';
 
 export default function FriendList({ friends }) {
   const friendList = friends.map(friend => {

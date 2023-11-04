@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
-import getRandomHexColor from 'helper/getRandomHexColor';
 import StatItem from 'components/Statistics/StatItem';
 import { List } from 'components/List.styles';
+import { getRandomHexColor } from 'helper';
 
 const Section = styled.section`
   width: 300px;

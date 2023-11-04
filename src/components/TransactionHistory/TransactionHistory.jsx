@@ -1,35 +1,54 @@
 import * as React from 'react';
+import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-export default function TransactionHistory({ items }) {
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
+    fontWeight: 700,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
+
+export default function CustomizedTables({ items }) {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table sx={{ minWidth: 500 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <TableCell>Type</TableCell>
-            <TableCell align="right">Amount</TableCell>
-            <TableCell align="right">Currency</TableCell>
+            <StyledTableCell align="center">Type</StyledTableCell>
+            <StyledTableCell align="center">Amount</StyledTableCell>
+            <StyledTableCell align="center">Currency</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {items.map(item => (
-            <TableRow
-              key={item.id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
+            <StyledTableRow key={item.id}>
+              <StyledTableCell component="th" scope="row" align="center">
                 {item.type}
-              </TableCell>
-              <TableCell align="right">{item.amount}</TableCell>
-              <TableCell align="right">{item.currency}</TableCell>
-            </TableRow>
+              </StyledTableCell>
+              <StyledTableCell align="center">{item.amount}</StyledTableCell>
+              <StyledTableCell align="center">{item.currency}</StyledTableCell>
+            </StyledTableRow>
           ))}
         </TableBody>
       </Table>
